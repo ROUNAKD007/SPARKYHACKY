@@ -156,6 +156,47 @@
     border-color: #555;
 }
 
+.profileEntry {
+    margin-top: 0.5rem;
+    border-top: 1px solid #333;
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    background: transparent;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    color: inherit;
+    text-align: left;
+}
+
+.profileAvatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profileAvatarFallback {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.profileName {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
 @media (max-width: 900px) {
     .container {
         flex-direction: column;
