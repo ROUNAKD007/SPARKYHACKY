@@ -3,41 +3,24 @@ import { useNavigate, Link } from 'react-router-dom';
 const Login = () => {
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        // Mock login - in a real app, this would call an API
-        navigate('/app');
-    };
-
     return (
         <div className="auth-container">
-            <div className="auth-card fade-in">
-                <h2>Welcome Back</h2>
+            <div className="auth-card fade-in" style={{ textAlign: 'center' }}>
+                <h2 style={{ marginBottom: '0.5rem' }}>Welcome Back</h2>
+                <p style={{ color: '#888', marginBottom: '2rem', fontSize: '0.9rem' }}>Sign in securely with Google</p>
 
-                <form onSubmit={handleLogin}>
-                    <div className="form-group">
-                        <label>Email</label>
-                        <input type="email" className="form-input" placeholder="you@example.com" />
-                    </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input type="password" className="form-input" placeholder="••••••••" />
-                    </div>
+                <button
+                    type="button"
+                    className="submit-btn google-btn"
+                    onClick={() => navigate('/app')}
+                    style={{ borderRadius: '9999px', padding: '12px 24px' }}
+                >
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" width="20" />
+                    Continue with Google
+                </button>
 
-                    <button type="submit" className="submit-btn">Log In</button>
-
-                    <div className="auth-divider">
-                        <span>or</span>
-                    </div>
-
-                    <button type="button" className="submit-btn google-btn" onClick={() => navigate('/app')}>
-                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" width="20" />
-                        Continue with Google
-                    </button>
-                </form>
-
-                <div className="form-footer">
-                    Don't have an account? <Link to="/signup">Sign up</Link>
+                <div className="form-footer" style={{ marginTop: '2rem' }}>
+                    New here? <Link to="/signup" style={{ color: 'white', textDecoration: 'underline' }}>Create an account</Link>
                 </div>
             </div>
         </div>
