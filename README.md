@@ -1,4 +1,4 @@
-# SPARKYHACKY
+# LUMINOUS
 
 Basic MERN stack starter with Vite frontend.
 
