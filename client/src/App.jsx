@@ -11,6 +11,16 @@ function App() {
 
   useEffect(() => {
     const boot = async () => {
+      // Check for token in URL (from Google Auth redirect)
+      const urlParams = new URLSearchParams(window.location.search);
+      const tokenFromUrl = urlParams.get('token');
+
+      if (tokenFromUrl) {
+        setToken(tokenFromUrl);
+        // Clean up URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+
       const token = getToken();
       if (!token) return;
 
@@ -50,6 +60,10 @@ function App() {
     }
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = 'http://localhost:5001/auth/google';
+  };
+
   const handleLogout = () => {
     setToken(null);
     setUser(null);
@@ -58,11 +72,14 @@ function App() {
 
   if (user) {
     return (
-      <main className="container">
-        <h1>Hi, welcome to the app, {user.username}!</h1>
-        <button type="button" className="button" onClick={handleLogout}>
-          Logout
-        </button>
+      <main className="hero-container">
+        <div className="hero-content">
+          <h1 className="hero-title">Hi, welcome to the app, <br /> <span className="highlight">{user.email}</span>!</h1>
+          <p className="hero-subtitle">You are successfully logged in.</p>
+          <button type="button" className="button logout-button" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
       </main>
     );
   }
@@ -71,6 +88,17 @@ function App() {
     <main className="container">
       <div className="card">
         <h1>Login</h1>
+        <div className="social-login">
+          <button type="button" className="google-button" onClick={handleGoogleLogin}>
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="google-icon" />
+            Sign in with Google
+          </button>
+        </div>
+
+        <div className="divider">
+          <span>or</span>
+        </div>
+
         <form className="form" onSubmit={handleSubmit}>
           <label className="field">
             <span>Email</span>

@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import passport from 'passport';
 
 import { requireAuth } from '../middleware/auth.js';
 import { User } from '../models/User.js';
@@ -12,6 +13,23 @@ const router = express.Router();
 const createToken = (userId) => {
   return jwt.sign({ sub: userId }, process.env.JWT_SECRET, { expiresIn: '7d' });
 };
+
+// Google Auth Route
+router.get(
+  '/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+// Google Auth Callback
+router.get(
+  '/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login', session: false }),
+  (req, res) => {
+    const token = createToken(req.user._id.toString());
+    // Redirect to frontend with token
+    res.redirect(`${process.env.CLIENT_ORIGIN}?token=${token}`);
+  }
+);
 
 router.post(
   '/register',

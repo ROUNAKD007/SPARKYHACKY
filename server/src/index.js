@@ -3,7 +3,10 @@ import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
 
+import session from 'express-session';
+import passport from 'passport';
 import './config/cloudinary.js';
+import './config/passport.js';
 import { connectDb } from './config/db.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 import authRoutes from './routes/authRoutes.js';
@@ -20,6 +23,16 @@ app.use(
   })
 );
 app.use(express.json());
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'secret',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/health', (_req, res) => {
   res.status(200).json({ status: 'ok' });
