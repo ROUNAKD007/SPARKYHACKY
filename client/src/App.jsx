@@ -1,30 +1,25 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Landing from './pages/Landing';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import Home from './pages/Home';
 import './styles.css';
 
-/*
-  NOTE: Previous authentication logic has been temporarily bypassed to display the new Home page.
-  To restore auth, uncomment the original code or move <Home /> into the authenticated view.
-*/
-
 function App() {
   return (
-    <Home />
+    <Router>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+
+        {/* Protected App Route (Mocked for now, direct access allowed per instructions) */}
+        <Route path="/app" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
-
-/* 
-// ORIGINAL AUTH APP CODE PRESERVED BELOW
-import { useEffect, useState } from 'react';
-import { getMe, getToken, login, setToken } from './api';
-
-const initialForm = { email: '', password: '' };
-
-function App() {
-  const [form, setForm] = useState(initialForm);
-  const [user, setUser] = useState(null);
-// ... (rest of the original code)
-}
-*/
