@@ -52,9 +52,6 @@ router.post(
         id: user._id,
         username: user.username,
         email: user.email,
-        pointsTotal: user.pointsTotal,
-        streakCount: user.streakCount,
-        lastSubmissionDate: user.lastSubmissionDate,
       },
     });
   })
@@ -89,9 +86,6 @@ router.post(
         id: user._id,
         username: user.username,
         email: user.email,
-        pointsTotal: user.pointsTotal,
-        streakCount: user.streakCount,
-        lastSubmissionDate: user.lastSubmissionDate,
       },
     });
   })
@@ -108,9 +102,6 @@ router.get(
         id: user._id,
         username: user.username,
         email: user.email,
-        pointsTotal: user.pointsTotal,
-        streakCount: user.streakCount,
-        lastSubmissionDate: user.lastSubmissionDate,
       },
     });
   })
