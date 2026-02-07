@@ -1,0 +1,31 @@
+/*
+  Masonry Standard Styles (No Auto-Scroll)
+  - Inertial scroll handled in JS or standard overflow
+*/
+
+.masonryContainer {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    /* We handle scroll on the window/parent, not inner container for "page" feel
+       OR we use inner scrolling if designed. 
+       Request said "whole feed area scrolls as a single page (not per column independently)"
+       and "smooth inertial scroll". 
+       Usually this means a fixed window with a transform container.
+    */
+    /* align-items: flex-start; */
+    /* Ensure columns don't stretch weirdly */
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+    .masonryContainer {
+        flex-direction: column;
+    }
+}

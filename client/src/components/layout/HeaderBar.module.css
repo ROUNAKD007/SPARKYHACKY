@@ -1,0 +1,89 @@
+/*
+  HeaderBar styles
+  - Flex layout
+  - Dark theme
+  - Responsive
+*/
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 72px;
+    background-color: #0d0d0d;
+    border-bottom: 1px solid #2a2a2a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.leftSection {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex: 1;
+}
+
+.logoArea {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.logoImage {
+    height: 32px;
+    width: auto;
+}
+
+.brandText {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+}
+
+/* Updated: Search area moved to right */
+.searchArea {
+    flex: 0 1 320px;
+    /* grow, shrink, basis */
+}
+
+.searchInput {
+    width: 100%;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 999px;
+    padding: 0.75rem 1.5rem;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.searchInput:focus {
+    border-color: #555;
+    background-color: #222;
+}
+
+
+/* 
+  Right section containing search
+*/
+.rightSection {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+@media (max-width: 900px) {
+    .header {
+        gap: 1rem;
+    }
+
+    .searchArea {
+        display: none;
+    }
+}
