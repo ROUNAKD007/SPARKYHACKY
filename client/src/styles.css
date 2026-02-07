@@ -331,3 +331,31 @@ a {
 .auth-divider span {
   padding: 0 10px;
 }
+/* Cloudinary Gallery */
+.portfolio-carousel {
+  display: flex;
+  gap: 16px;
+  height: 80vh;
+  overflow: hidden;
+  align-items: flex-start;
+}
+.portfolio-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  animation: portfolioScroll 26s linear infinite;
+  will-change: transform;
+}
+.portfolio-img {
+  width: 100%;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  object-fit: cover;
+}
+@keyframes portfolioScroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+.portfolio-carousel:hover .portfolio-col {
+  animation-play-state: paused;
+}

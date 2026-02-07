@@ -5,14 +5,13 @@ import express from 'express';
 
 import session from 'express-session';
 import passport from 'passport';
-import './config/cloudinary.js';
 import './config/passport.js';
 import { connectDb } from './config/db.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 import authRoutes from './routes/authRoutes.js';
 import dailyColorRoutes from './routes/dailyColorRoutes.js';
 import exploreRoutes from './routes/exploreRoutes.js';
-import imagesRoutes from './routes/imagesRoutes.js';
+import imagesRoutes from './routes/images.js';
 import submissionRoutes from './routes/submissionRoutes.js';
 
 const app = express();
