@@ -1,44 +1,333 @@
 :root {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  color: #ededed;
-  background-color: #0d0d0d;
-  /* Updated for Dark Mode */
+  --bg-color: #050505;
+  --text-primary: #ffffff;
+  --text-secondary: #999999;
+  --accent-glow: 0 0 20px rgba(255, 255, 255, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  background-color: #0d0d0d;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* 
-  Previous styles preserved below if needed, but overrides applied for Cosmos theme.
-  Users can clean this up later.
-*/
-
-.container {
-  min-height: 100vh;
-  /* display: grid; */
-  /* place-content: center; */
-  padding: 0;
-  /* Remove padding for full width layouts */
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-/* ... existing styles can remain or be cleaned up ... */
-/* Retaining minimal necessary ones */
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-button {
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s var(--ease-out) forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.3s;
+}
+
+.delay-3 {
+  animation-delay: 0.6s;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background: rgba(5, 5, 5, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.nav-brand {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nav-right {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: color 0.3s;
+  cursor: pointer;
+  background: none;
+  border: none;
   font-family: inherit;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: radial-gradient(circle at center, #111 0%, #050505 70%);
+  position: relative;
+}
+
+.hero-content {
+  max-width: 800px;
+  z-index: 2;
+}
+
+.hero-headline {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subhead {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.cta-btn {
+  background: white;
+  color: black;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.cta-btn:active {
+  transform: scale(0.98);
+}
+
+/* Scroll Sections */
+.scroll-section {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.big-type {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.big-type.visible {
+  opacity: 1;
+  transform: translateY(0);
+  color: white;
+}
+
+/* Footer */
+.footer {
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Auth Pages */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #050505 70%);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.auth-card h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.form-input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  border-color: white;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: transform 0.2s;
+}
+
+.submit-btn:hover {
+  transform: scale(1.02);
+}
+
+.form-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.form-footer a {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.submit-btn.google-btn {
+  background: white;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ddd;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.auth-divider span {
+  padding: 0 10px;
 }
