@@ -14,11 +14,8 @@
     "framer-motion": "^12.33.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-<<<<<<< HEAD
-    "react-router-dom": "^7.13.0"
-=======
+    "react-router-dom": "^7.13.0",
     "react-webcam": "^7.2.0"
->>>>>>> dravya
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.0.0",

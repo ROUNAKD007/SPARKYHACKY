@@ -12,6 +12,7 @@ import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 import authRoutes from './routes/authRoutes.js';
 import dailyColorRoutes from './routes/dailyColorRoutes.js';
 import exploreRoutes from './routes/exploreRoutes.js';
+import imagesRoutes from './routes/imagesRoutes.js';
 import submissionRoutes from './routes/submissionRoutes.js';
 
 const app = express();
@@ -19,6 +20,7 @@ const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
   'http://localhost:5173',
+  process.env.CORS_ORIGIN,
   process.env.CLIENT_ORIGIN,
 ].filter(Boolean);
 
@@ -56,6 +58,7 @@ app.use('/daily-color', dailyColorRoutes);
 app.use('/auth', authRoutes);
 app.use('/submissions', submissionRoutes);
 app.use('/explore', exploreRoutes);
+app.use('/api/images', imagesRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
